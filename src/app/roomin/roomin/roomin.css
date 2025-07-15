@@ -1,30 +1,107 @@
-.login-box {
-  max-width: 300px;
-  margin: 80px auto;
-  background: #f2f2f2;
+header { 
+  padding:15px 20px; 
+  display:flex;
+  justify-content: space-between; 
+  backdrop-filter: blur(2px); 
+  margin-bottom: 10px;
+ }
+header h1 { margin:0; color: rgb(17, 16, 16);
+    padding: 2px; 
+    border-radius: 4px;
+    font-size: 30px;
+  }
+.img h1{
+width: 600px;
+height: 60px;
+display: flex;
+    justify-content: space-between;
+  }
+header button { padding:6px 12px; background:#fff; color:#007bff;
+  border: none; border-radius:4px; cursor:pointer; }
+
+.filter-bar { background:rgba(132, 115, 115, 0.637); padding:10px 20px; display:flex; flex-wrap:wrap;
+  gap:10px; align-items:center; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+margin-bottom: 10px; border-radius: 20px; margin-right: 440px;
+}
+.filter-bar select, .filter-bar input, .filter-bar button {
+  padding:8px; border:1px solid #ccc; border-radius:4px;
+}
+.filter-bar button { background:#007bff; color:#ffffff; cursor:pointer; }
+
+main { display:grid; gap:20px; padding:20px;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); }
+
+.card { background:#ffffff89; border-radius:8px; overflow:hidden;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+.card img { width:100%; height:180px; object-fit:cover; }
+.card-content { padding:15px; }
+.card-content h3 { margin:0 0 8px; }
+.card-content p { margin:4px 0; }
+.card-content .price { font-weight:bold; color:#007bff; }
+.card-content button { margin-top:10px; width:100%; padding:10px;
+  background:#007bffc9; color:#fff; border:none; border-radius:5px; cursor:pointer; }
+
+  .password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 18px;
+  color: #333;
+}
+/*view Details*/
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
   padding: 20px;
   border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(63, 5, 187, 0.2);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  position: relative;
 }
 
-.login-box input {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 12px;
+.modal-content .close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }
-
-.login-box button {
-  width: 100%;
-  padding: 8px;
-  background-color: #0057e7;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
-.error-text {
-  color: red;
-  font-size: 0.9em;
+#appSection {
+  background-image: url('https://imageio.forbes.com/specials-images/imageserve/64511ec65d2635d70d1e6545/Airbnb-Rooms-Summer-2023/1960x0.jpg?format=jpg&width=1440'); /* adjust if path differs */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 20px;
 }

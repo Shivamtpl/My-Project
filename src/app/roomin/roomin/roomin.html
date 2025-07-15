@@ -1,10 +1,61 @@
-<!-- <div class="login-box">
-  <h2>Login</h2>
-  <input type="text" [(ngModel)]="contactInfo" placeholder="Phone number or Email" />
-  
-  <input type="password" [(ngModel)]="password" placeholder="Password" />
-  
-  <button (click)="handleLogin()">Login</button>
+<section>
+  <header>
+    <div class="img">
+      <h1>
+        <img src="https://thumbs.dreamstime.com/b/room-rent-sign-isolated-white-background-simple-vector-logo-room-rent-sign-isolated-white-background-221788015.jpg?w=768">      </h1>
+    </div>
+    <button (click)="handleLogout()" style="height: 30px;">Logout</button>
+  </header>
 
-  <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
-</div> -->
+  <div class="filter-bar">
+    <select [(ngModel)]="filters.city">
+      <option value="">Select City</option>
+      <option value="Jagityal">Jagityal</option>
+      <option value="Metpally">Metpally</option>
+      <option value="Kortula">Kortula</option>
+    </select>
+
+    <select [(ngModel)]="filters.type">
+      <option value="">Room Type</option>
+      <option value="2BHK">2BHK</option>
+      <option value="1RK">1RK</option>
+      <option value="Studio">Studio</option>
+    </select>
+
+    <input type="number" [(ngModel)]="filters.minPrice" placeholder="Min Price" />
+    <input type="number" [(ngModel)]="filters.maxPrice" placeholder="Max Price" />
+    <button (click)="applyFilters()">Apply</button>
+    <button (click)="clearFilters()">Clear</button>
+  </div>
+
+  <main class="listing-container">
+    <div *ngFor="let l of filteredListings" class="card">
+      <img [src]="l.images[0]" [alt]="l.title" />
+      <div class="card-content">
+        <h3>{{ l.title }}</h3>
+        <p>{{ l.location }}, {{ l.city }}</p>
+        <p class="price">₹{{ l.price }}/month</p>
+        <button (click)="showModal(l)">View Details</button>
+      </div>
+    </div>
+  </main>
+</section>
+
+<!-- Modal -->
+<div class="modal" [class.hidden]="!selectedListing" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModal()">&times;</span>
+
+    <div class="carousel">
+      <button (click)="prevImage()">◀</button>
+      <img [src]="currentImage" alt="Room Image" />
+      <button (click)="nextImage()">▶</button>
+    </div>
+
+    <h3>{{ selectedListing?.title }}</h3>
+    <p>{{ selectedListing?.location }}, {{ selectedListing?.city }}</p>
+    <p>₹{{ selectedListing?.price }}/month</p>
+    <p>Description: {{ selectedListing?.description || 'N/A' }}</p>
+    <p>Contact: {{ selectedListing?.contact || 'N/A' }}</p>
+  </div>
+</div>

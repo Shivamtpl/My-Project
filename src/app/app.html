@@ -1,10 +1,41 @@
-<div class="login-box">
-  <h2>Login</h2>
-  <input type="text" [(ngModel)]="contactInfo" placeholder="Phone number or Email" />
-  
-  <input type="password" [(ngModel)]="password" placeholder="Password" />
-  
-  <button (click)="handleLogin()">Login</button>
+<section *ngIf="showLoginSection">
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="text" [(ngModel)]="contactInfo" placeholder="Phone number or Email" />
 
-  <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
-</div>
+    <div class="password-wrapper">
+      <input [type]="getInputType('password')" [(ngModel)]="password" placeholder="Password" />
+      <span class="toggle-password" (click)="togglePassword('password')">{{ getEyeIcon('password') }}</span>
+    </div>
+
+    <button (click)="handleLogin()">Login</button>
+
+    <p class="forgot-link">
+      <button (click)="handleForgotPassword()">Forgot Password?</button>
+    </p>
+
+    <p class="error-text">{{ loginError }}</p>
+  </div>
+</section>
+
+<section *ngIf="showResetSection">
+  <div class="login-box">
+    <h2>Reset Password</h2>
+
+    <div class="password-wrapper">
+      <input [type]="getInputType('newPassword')" [(ngModel)]="newPassword" placeholder="New Password" />
+      <span class="toggle-password" (click)="togglePassword('newPassword')">{{ getEyeIcon('newPassword') }}</span>
+    </div>
+
+    <div class="password-wrapper">
+      <input [type]="getInputType('confirmPassword')" [(ngModel)]="confirmPassword" placeholder="Confirm Password" />
+      <span class="toggle-password" (click)="togglePassword('confirmPassword')">{{ getEyeIcon('confirmPassword') }}</span>
+    </div>
+
+    <button (click)="resetPassword()">Submit</button>
+    <p class="error-text">{{ resetError }}</p>
+  </div>
+</section>
+<!-- Once login is successful, this will show the main app -->
+<router-outlet *ngIf="!showLoginSection && !showResetSection"></router-outlet>
+
