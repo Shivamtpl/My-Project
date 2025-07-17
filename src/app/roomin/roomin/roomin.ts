@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-roomin',
@@ -10,6 +11,11 @@ import { FormsModule } from '@angular/forms';
  imports: [CommonModule, FormsModule]
 })
 export class Roomin {
+
+  constructor (
+    private auth: AuthService
+  ) 
+  {}
  listings = [
     {
       id: 1,
@@ -65,7 +71,8 @@ export class Roomin {
   handleLogout() {
     this.filteredListings = [...this.listings];
     this.selectedListing = null;
-    if (this.logoutCallback) this.logoutCallback();
+    // if (this.logoutCallback) this.logoutCallback();
+    this.auth.logout();
   }
 
   applyFilters() {
